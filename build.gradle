@@ -21,14 +21,19 @@ dependencies {
 }
 
 // ──────────────────────────────────────────────────────────
-//  Fat-Jar (enthält alle Abhängigkeiten außer JavaFX-Natives)
+//  Thin-Jar: nur App-Code + AnimateFX, KEIN JavaFX
+//  (JavaFX kommt via jlink-Runtime-Image rein)
 // ──────────────────────────────────────────────────────────
 jar {
     manifest {
         attributes 'Main-Class': 'com.waterreminder.Main'
     }
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    from {
+        configurations.runtimeClasspath
+            .findAll { !it.name.toLowerCase().contains('javafx') }
+            .collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
 
 

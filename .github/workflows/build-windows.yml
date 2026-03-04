@@ -3,7 +3,7 @@ name: Build Windows Installer
 on:
   push:
     branches: [ main, master ]
-  workflow_dispatch:   # Manuell startbar
+  workflow_dispatch:
 
 jobs:
   build-windows:
@@ -13,25 +13,35 @@ jobs:
       - name: Code auschecken
         uses: actions/checkout@v4
 
-      - name: JDK 21 installieren (enthält jpackage)
+      - name: JDK 21 installieren
         uses: actions/setup-java@v4
         with:
           java-version: '21'
           distribution: 'temurin'
 
-      - name: JavaFX Windows SDK herunterladen
-        run: |
-          curl -L "https://download2.gluonhq.com/openjfx/21/openjfx-21_windows-x64_bin-sdk.zip" -o javafx-sdk.zip
-          7z x javafx-sdk.zip -ojfx
-        shell: cmd
-
-      - name: Fat-JAR bauen
+      - name: App-JAR bauen (ohne JavaFX)
         run: ./gradlew jar
         shell: bash
 
+      - name: JavaFX 21 jmods herunterladen (fuer jlink)
+        run: |
+          curl -L "https://download2.gluonhq.com/openjfx/21.0.5/openjfx-21.0.5_windows-x64_bin-jmods.zip" -o javafx-jmods.zip
+          7z x javafx-jmods.zip -ojfx
+        shell: cmd
+
+      - name: Custom Runtime mit jlink erstellen
+        run: |
+          jlink ^
+            --module-path "jfx\javafx-jmods-21.0.5;%JAVA_HOME%\jmods" ^
+            --add-modules javafx.controls,javafx.fxml,javafx.media,javafx.web,java.base,java.desktop,java.logging,java.xml,java.naming,java.sql,java.management,jdk.unsupported ^
+            --output runtime-image ^
+            --strip-debug ^
+            --no-header-files ^
+            --no-man-pages
+        shell: cmd
+
       - name: Windows-Installer mit jpackage erstellen
         run: |
-          mkdir build\jpackage
           jpackage ^
             --type exe ^
             --name AquaBuddy ^
@@ -39,8 +49,7 @@ jobs:
             --input build\libs ^
             --main-jar WasserTrinkApp.jar ^
             --main-class com.waterreminder.Main ^
-            --module-path jfx\javafx-sdk-21\lib ^
-            --add-modules javafx.controls,javafx.fxml,javafx.media,javafx.web ^
+            --runtime-image runtime-image ^
             --win-dir-chooser ^
             --win-shortcut ^
             --win-menu ^
