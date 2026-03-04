@@ -1,0 +1,309 @@
+/*
+ * ============================================
+ *   AquaBuddy – Clean Minimal Dark Theme
+ * ============================================
+ */
+
+/* ===== ROOT ===== */
+
+.root-pane {
+    -fx-background-color: #111111;
+}
+
+.main-container {
+    -fx-background-color: transparent;
+}
+
+/* ===== HEADER ===== */
+
+.header-section {
+    -fx-background-color: transparent;
+}
+
+.app-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #e4e4e4;
+}
+
+.greeting-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #666666;
+}
+
+/* ===== WASSERTROPFEN ===== */
+
+.drop-section {
+    -fx-padding: 6 16 4 16;
+}
+
+.water-drop-emoji {
+    -fx-font-size: 52px;
+}
+
+.glass-count {
+    -fx-font-size: 44px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+
+.goal-text {
+    -fx-font-size: 16px;
+    -fx-text-fill: #555555;
+    -fx-padding: 14 0 0 0;
+}
+
+.total-ml {
+    -fx-font-size: 12px;
+    -fx-text-fill: #555555;
+}
+
+/* ===== PROGRESS BAR ===== */
+
+.progress-section {
+    -fx-padding: 2 32 6 32;
+}
+
+.water-progress {
+    -fx-pref-height: 8px;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+}
+
+.water-progress .track {
+    -fx-background-color: #1e1e1e;
+    -fx-background-radius: 4;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-border-radius: 4;
+}
+
+.water-progress .bar {
+    -fx-background-color: #3b82f6;
+    -fx-background-radius: 4;
+    -fx-background-insets: 0;
+}
+
+.progress-percent {
+    -fx-font-size: 11px;
+    -fx-text-fill: #3b82f6;
+    -fx-font-weight: bold;
+}
+
+/* ===== NACHRICHT ===== */
+
+.message-section {
+    -fx-padding: 6 28 6 28;
+}
+
+.message-label {
+    -fx-font-size: 13px;
+    -fx-text-fill: #cccccc;
+    -fx-text-alignment: center;
+    -fx-line-spacing: 2;
+    -fx-background-color: #1a1a1a;
+    -fx-background-radius: 10;
+    -fx-border-color: #222222;
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
+    -fx-padding: 12 18 12 18;
+    -fx-min-height: 56;
+    -fx-max-width: 320;
+}
+
+/* ===== DRINK BUTTON ===== */
+
+.button-section {
+    -fx-padding: 6 24 4 24;
+}
+
+.drink-button {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-color: #3b82f6;
+    -fx-background-radius: 24;
+    -fx-border-radius: 24;
+    -fx-cursor: hand;
+    -fx-padding: 11 28 11 28;
+}
+
+.drink-button:hover {
+    -fx-background-color: #4a8ff7;
+}
+
+.drink-button:pressed {
+    -fx-background-color: #2563eb;
+    -fx-scale-x: 0.97;
+    -fx-scale-y: 0.97;
+}
+
+.drink-button-completed {
+    -fx-background-color: #22c55e !important;
+}
+
+.drink-button-completed:hover {
+    -fx-background-color: #2dd46a !important;
+}
+
+.undo-button {
+    -fx-font-size: 11px;
+    -fx-text-fill: #555555;
+    -fx-background-color: transparent;
+    -fx-background-radius: 12;
+    -fx-cursor: hand;
+    -fx-padding: 4 14 4 14;
+}
+
+.undo-button:hover {
+    -fx-text-fill: #888888;
+    -fx-background-color: #1a1a1a;
+}
+
+.undo-button:disabled {
+    -fx-opacity: 0.25;
+}
+
+/* ===== TIMER & STATS ===== */
+
+.stats-section {
+    -fx-background-color: transparent;
+}
+
+.timer-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #888888;
+}
+
+.streak-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #888888;
+}
+
+.last-drink-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #555555;
+}
+
+/* ===== FAKTEN-BOX ===== */
+
+.fact-section {
+    -fx-padding: 6 28 4 28;
+}
+
+.fact-label {
+    -fx-font-size: 11px;
+    -fx-text-fill: #666666;
+    -fx-font-style: italic;
+    -fx-text-alignment: center;
+    -fx-background-color: #151515;
+    -fx-background-radius: 8;
+    -fx-border-color: #1e1e1e;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+    -fx-padding: 8 14 8 14;
+    -fx-max-width: 320;
+}
+
+/* ===== EINSTELLUNGEN ===== */
+
+.settings-section {
+    -fx-background-color: transparent;
+    -fx-border-color: #1a1a1a transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+}
+
+.settings-title {
+    -fx-font-size: 12px;
+    -fx-text-fill: #666666;
+    -fx-font-weight: bold;
+}
+
+.setting-label {
+    -fx-font-size: 11px;
+    -fx-text-fill: #555555;
+    -fx-min-width: 110;
+}
+
+.setting-value {
+    -fx-font-size: 11px;
+    -fx-text-fill: #3b82f6;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_RIGHT;
+}
+
+/* ===== SLIDER ===== */
+
+.slider .track {
+    -fx-background-color: #1e1e1e;
+    -fx-background-radius: 4;
+    -fx-pref-height: 4;
+}
+
+.slider .thumb {
+    -fx-background-color: #3b82f6;
+    -fx-background-radius: 8;
+    -fx-pref-width: 14;
+    -fx-pref-height: 14;
+    -fx-cursor: hand;
+}
+
+.slider .thumb:hover {
+    -fx-background-color: #5a9bf8;
+}
+
+.slider .colored-track {
+    -fx-background-color: #3b82f6;
+    -fx-background-radius: 4;
+}
+
+/* ===== FEIER-OVERLAY ===== */
+
+.celebration-overlay {
+    -fx-background-color: rgba(0, 0, 0, 0.8);
+}
+
+.celebration-text {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-text-alignment: center;
+    -fx-line-spacing: 4;
+    -fx-wrap-text: true;
+}
+
+/* ===== ERINNERUNGS-FLASH ===== */
+
+.reminder-flash {
+    -fx-background-color: rgba(59, 130, 246, 0.06) !important;
+}
+
+/* ===== SCROLLBAR ===== */
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .track {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #2a2a2a;
+    -fx-background-radius: 4;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: #333333;
+}
+
+/* ===== TOOLTIP ===== */
+
+.tooltip {
+    -fx-background-color: #1a1a1a;
+    -fx-text-fill: #cccccc;
+    -fx-border-color: #222222;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-font-size: 11px;
+}

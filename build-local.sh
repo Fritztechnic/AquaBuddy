@@ -6,6 +6,12 @@ JAVAFX_VERSION="21.0.5"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$SCRIPT_DIR"
 
+# JDK-Pfad ableiten falls JAVA_HOME nicht gesetzt
+if [ -z "$JAVA_HOME" ]; then
+    JAVA_HOME="$(dirname $(dirname $(readlink -f $(which java))))"
+fi
+echo "==> Verwende JDK: $JAVA_HOME"
+
 echo "==> 1. App-JAR bauen..."
 ./gradlew jar
 
