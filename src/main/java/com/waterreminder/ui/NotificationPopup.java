@@ -21,9 +21,6 @@ import javafx.util.Duration;
  */
 public class NotificationPopup {
 
-    private static final String GIF_URL =
-        "https://media1.tenor.com/m/Qm2IhnnkUsEAAAAd/funny-animals.gif";
-
     private static final int POPUP_WIDTH = 320;
     private static final int POPUP_HEIGHT = 380;
     private static final int AUTO_CLOSE_SECONDS = 15;
@@ -102,8 +99,9 @@ public class NotificationPopup {
         webView.setPrefSize(POPUP_WIDTH - 24, 200);
         webView.setMaxSize(POPUP_WIDTH - 24, 200);
 
-        // Transparenter Hintergrund, GIF zentriert
+        // GIF aus JAR-Ressourcen laden (funktioniert offline + auf Windows)
         WebEngine engine = webView.getEngine();
+        String gifUrl = getClass().getResource("/cat-drinking.gif").toExternalForm();
         String html = """
             <!DOCTYPE html>
             <html>
@@ -128,7 +126,7 @@ public class NotificationPopup {
                 <img src="%s" alt="Trink Wasser!"/>
             </body>
             </html>
-            """.formatted(GIF_URL);
+            """.formatted(gifUrl);
         engine.loadContent(html);
 
         // Scrollbars deaktivieren
