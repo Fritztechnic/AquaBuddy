@@ -12,3 +12,7 @@ build/
 # OS
 .DS_Store
 Thumbs.db
+
+# Lokaler Build
+jfx/
+runtime-image/
