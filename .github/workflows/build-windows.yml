@@ -13,19 +13,41 @@ jobs:
       - name: Code auschecken
         uses: actions/checkout@v4
 
-      - name: JDK 21 installieren
+      - name: JDK 21 installieren (enthält jpackage)
         uses: actions/setup-java@v4
         with:
           java-version: '21'
           distribution: 'temurin'
 
-      - name: Gradle Wrapper ausführbar machen
-        run: chmod +x gradlew
+      - name: JavaFX Windows SDK herunterladen
+        run: |
+          curl -L "https://download2.gluonhq.com/openjfx/21/openjfx-21_windows-x64_bin-sdk.zip" -o javafx-sdk.zip
+          7z x javafx-sdk.zip -ojfx
+        shell: cmd
+
+      - name: Fat-JAR bauen
+        run: ./gradlew jar
         shell: bash
 
-      - name: Windows-Installer bauen (.exe)
-        run: ./gradlew jpackage
-        shell: bash
+      - name: Windows-Installer mit jpackage erstellen
+        run: |
+          mkdir build\jpackage
+          jpackage ^
+            --type exe ^
+            --name AquaBuddy ^
+            --app-version 1.0.0 ^
+            --input build\libs ^
+            --main-jar WasserTrinkApp.jar ^
+            --main-class com.waterreminder.Main ^
+            --module-path jfx\javafx-sdk-21\lib ^
+            --add-modules javafx.controls,javafx.fxml,javafx.media,javafx.web ^
+            --win-dir-chooser ^
+            --win-shortcut ^
+            --win-menu ^
+            --win-menu-group AquaBuddy ^
+            --vendor AquaBuddy ^
+            --dest build\jpackage
+        shell: cmd
 
       - name: Installer hochladen als Artifact
         uses: actions/upload-artifact@v4
