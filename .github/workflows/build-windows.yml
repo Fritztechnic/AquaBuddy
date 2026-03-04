@@ -1,0 +1,35 @@
+name: Build Windows Installer
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:   # Manuell startbar
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Code auschecken
+        uses: actions/checkout@v4
+
+      - name: JDK 21 installieren
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Gradle Wrapper ausführbar machen
+        run: chmod +x gradlew
+        shell: bash
+
+      - name: Windows-Installer bauen (.exe)
+        run: ./gradlew jpackage
+        shell: bash
+
+      - name: Installer hochladen als Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: AquaBuddy-Windows-Installer
+          path: build/jpackage/*.exe
+          if-no-files-found: error
